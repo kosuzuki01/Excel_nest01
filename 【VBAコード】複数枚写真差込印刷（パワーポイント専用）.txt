@@ -1,10 +1,10 @@
-f•¡”–‡ŽÊ^·žˆóüiƒpƒ[ƒ|ƒCƒ“ƒgê—pƒR[ƒhj
-fŽÊ^·‚µž‚ÝŽžŽg—pi¦Alt+F11‚ÅVBA—§‚¿ã‚°¨ƒ‚ƒWƒ…[ƒ‹‚ÉˆÈ‰º“Y•t‚µ
-fƒR[ƒh‚ðŽÀŽ{‚·‚éB
-'ì¬ŽÒFÎŠªŽs•œ‹»Ž–‹Æ•”—p’nŠÇ—‰Û
+â€™è¤‡æ•°æžšå†™çœŸå·®è¾¼å°åˆ·ï¼ˆãƒ‘ãƒ¯ãƒ¼ãƒã‚¤ãƒ³ãƒˆå°‚ç”¨ã‚³ãƒ¼ãƒ‰ï¼‰
+â€™å†™çœŸå·®ã—è¾¼ã¿æ™‚ä½¿ç”¨ï¼ˆâ€»Alt+F11ã§VBAç«‹ã¡ä¸Šã’â†’ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã«ä»¥ä¸‹æ·»ä»˜ã—
+â€™ã‚³ãƒ¼ãƒ‰ã‚’å®Ÿæ–½ã™ã‚‹ã€‚
 
 
-Sub ‰æ‘œ•¡”‘}“ü2016()
+
+Sub ç”»åƒè¤‡æ•°æŒ¿å…¥2016()
 Dim cntL As Integer, cntT As Integer
 Dim flgAspect As Boolean
 Dim SL As Single, SR As Single, ST As Single, SB As Single
@@ -21,15 +21,15 @@ Dim myWidth As Single, myHeight As Single
 Dim myLeft As Single, myTop As Single
 Dim myPic As Shape
 
-cntL = 2          '‰¡•ûŒüƒTƒCƒY•ÏX
-cntT = 4          'c•ûŒüƒTƒCƒY•ÏX
-flgAspect = True  'c‰¡”ä‚ðŒÅ’è‚·‚é‚Æ‚«‚ÍTrue,‚µ‚È‚¢‚Æ‚«‚ÍFalse‚Å•ÏX
-SL = 50           'ƒXƒ‰ƒCƒh¶—]”’
-SR = 50           'ƒXƒ‰ƒCƒh‰E—]”’
-ST = 50           'ƒXƒ‰ƒCƒhã—]”’
-SB = 50           'ƒXƒ‰ƒCƒh‰º—]”’
-ML = 0            '¶‰EŠÔŠu
-MT = 20           'ã‰ºŠÔŠu
+cntL = 2          'æ¨ªæ–¹å‘ã‚µã‚¤ã‚ºå¤‰æ›´
+cntT = 4          'ç¸¦æ–¹å‘ã‚µã‚¤ã‚ºå¤‰æ›´
+flgAspect = True  'ç¸¦æ¨ªæ¯”ã‚’å›ºå®šã™ã‚‹ã¨ãã¯True,ã—ãªã„ã¨ãã¯Falseã§å¤‰æ›´
+SL = 50           'ã‚¹ãƒ©ã‚¤ãƒ‰å·¦ä½™ç™½
+SR = 50           'ã‚¹ãƒ©ã‚¤ãƒ‰å³ä½™ç™½
+ST = 50           'ã‚¹ãƒ©ã‚¤ãƒ‰ä¸Šä½™ç™½
+SB = 50           'ã‚¹ãƒ©ã‚¤ãƒ‰ä¸‹ä½™ç™½
+ML = 0            'å·¦å³é–“éš”
+MT = 20           'ä¸Šä¸‹é–“éš”
 
 Set myPre = ActivePresentation
 With myPre
@@ -43,7 +43,7 @@ myWidth = realWidth / cntL - ML
 myHeight = realHeight / cntT - MT
 Set xlApp = CreateObject("Excel.Application")
 dlgOpen = xlApp.GetOpenFileName("gif,*.gif,jpg,*.jpg,jpeg,*.jpeg,bmp,*.bmp,png,*.png,wmf,*.wmf,tiff,*.tiff", , , , True)
-With myPre.Slides   'V‹KƒXƒ‰ƒCƒhì¬
+With myPre.Slides   'æ–°è¦ã‚¹ãƒ©ã‚¤ãƒ‰ä½œæˆ
 j = 1
 i = 1
 Set Sld = .Add(.Count + 1, ppLayoutBlank)
@@ -51,7 +51,7 @@ End With
 
 If IsArray(dlgOpen) Then
 For n = LBound(dlgOpen) To UBound(dlgOpen)
-If i > cntT Then    '‚³‚ç‚ÉV‹KƒXƒ‰ƒCƒhì¬
+If i > cntT Then    'ã•ã‚‰ã«æ–°è¦ã‚¹ãƒ©ã‚¤ãƒ‰ä½œæˆ
 i = 1
 With myPre.Slides
 Set Sld = .Add(.Count + 1, ppLayoutBlank)
@@ -77,9 +77,9 @@ If .Width > myWidth Then
 End If
 End If
 End With
-If j < cntL Then   '‰¡‚É‚¸‚ç‚·
+If j < cntL Then   'æ¨ªã«ãšã‚‰ã™
 j = j + 1
-Else               '‰üs
+Else               'æ”¹è¡Œ
 j = 1
 i = i + 1
 End If
