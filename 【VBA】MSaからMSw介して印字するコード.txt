@@ -1,62 +1,61 @@
-'ŠÇ—ÒFÎŠªs—p’nŠÇ—‰ÛiƒR[ƒh‚ÍƒtƒŠ[‚Å‚·BƒRƒsƒyOK‚Å‚·j
 Option Compare Database
 
 
-'IDU‚è’¼‚µƒR[ƒhiƒe[ƒuƒ‹j
+'IDæŒ¯ã‚Šç›´ã—ã‚³ãƒ¼ãƒ‰ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ï¼‰
 Private Sub Form_BeforeUpdate(Cancel As Integer)
 
-If DCount("ID", "ƒf[ƒ^•Û‘¶ŠÇ—ƒV[ƒg") = 0 Then
+If DCount("ID", "ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç®¡ç†ã‚·ãƒ¼ãƒˆ") = 0 Then
 Me![ID] = "1"
 Else
-Me![ID] = Format(DMax("ID", "ƒf[ƒ^•Û‘¶ŠÇ—ƒV[ƒg") + 1)
+Me![ID] = Format(DMax("ID", "ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç®¡ç†ã‚·ãƒ¼ãƒˆ") + 1)
 End If
 
 End Sub
 
-'·ˆóüƒR[ƒh(ƒtƒH[ƒ€ã‚Ìƒ{ƒ^ƒ“‚Ö–„‚ß‚İj
+'å·®è¾¼å°åˆ·ã‚³ãƒ¼ãƒ‰(ãƒ•ã‚©ãƒ¼ãƒ ä¸Šã®ãƒœã‚¿ãƒ³ã¸åŸ‹ã‚è¾¼ã¿ï¼‰
 Private Sub insert_at_word_Click()
-Dim myWrd As Object      'ƒ[ƒhƒIƒuƒWƒFƒNƒgŠi”[
-Dim myTMP As Object      'ƒNƒ‰ƒXŠi”[
-Dim i As Variant         'ƒy[ƒW”ÍˆÍŠi”[İ’è
+Dim myWrd As Object      'ãƒ¯ãƒ¼ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ ¼ç´
+Dim myTMP As Object      'ã‚¯ãƒ©ã‚¹æ ¼ç´
+Dim i As Variant         'ãƒšãƒ¼ã‚¸ç¯„å›²æ ¼ç´è¨­å®š
 
 
-'·ˆóüƒtƒH[ƒ}ƒbƒgi‚»‚Ì‚ÌŠi”[êŠæ‚ğw’è‚·‚é‚±‚Æj
-Const myFileP As String = "Y:\•œ‹»–‹Æ•”\—p’nŠÇ—‰Û\15_İ’è“o‹LŠÖŒW" _
-& "\05_“o˜^–Æ‹–ÅZo\·Wordƒf[ƒ^\y·z“o˜^–Æ‹–Å‚ÌZ’èyƒAƒNƒZƒXê—pz.docx"
+'å·®è¾¼å°åˆ·ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆï¼ˆãã®æ™‚ã®æ ¼ç´å ´æ‰€å…ˆã‚’æŒ‡å®šã™ã‚‹ã“ã¨ï¼‰
+Const myFileP As String = "Y:\å¾©èˆˆäº‹æ¥­éƒ¨\ç”¨åœ°ç®¡ç†èª²\15_è¨­å®šç™»è¨˜é–¢ä¿‚" _
+& "\05_ç™»éŒ²å…è¨±ç¨ç®—å‡º\å·®è¾¼Wordãƒ‡ãƒ¼ã‚¿\ã€å·®è¾¼ã€‘ç™»éŒ²å…è¨±ç¨ã®ç®—å®šã€ã‚¢ã‚¯ã‚»ã‚¹å°‚ç”¨ã€‘.docx"
 
 
-'ƒ[ƒhƒIƒuƒWƒFƒNƒg‹N“®iƒ}ƒjƒtƒFƒXƒgj
+'ãƒ¯ãƒ¼ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆèµ·å‹•ï¼ˆãƒãƒ‹ãƒ•ã‚§ã‚¹ãƒˆï¼‰
 Set myWrd = GetObject(myFileP)
 Set myTMP = GetObject(Class:="Word.Application")
 
-With myWrd 'ƒNƒGƒŠƒf[ƒ^¨Word‚É·i“®ì•sˆÀ’èAWord‘¤·‚µ‚İƒf[ƒ^“à—eŠm”Fj
+With myWrd 'ã‚¯ã‚¨ãƒªãƒ‡ãƒ¼ã‚¿â†’Wordã«å·®è¾¼ï¼ˆå‹•ä½œä¸å®‰å®šæ™‚ã€Wordå´å·®ã—è¾¼ã¿ãƒ‡ãƒ¼ã‚¿å†…å®¹ç¢ºèªï¼‰
 With .MailMerge
      .Destination = 0
      .SuppressBlankLines = True
 
 
-'ƒy[ƒW”w’è‰æ–Ê•\¦
-i = InputBox("ˆóü‚·‚éƒy[ƒW”ÍˆÍ‚ğA-BŒ`®‚Å“ü—Í‚µ‚Ä‰º‚³‚¢B")
+'ãƒšãƒ¼ã‚¸æ•°æŒ‡å®šç”»é¢è¡¨ç¤º
+i = InputBox("å°åˆ·ã™ã‚‹ãƒšãƒ¼ã‚¸ç¯„å›²ã‚’A-Bå½¢å¼ã§å…¥åŠ›ã—ã¦ä¸‹ã•ã„ã€‚")
 
-'ƒy[ƒW”ÍˆÍw’è
+'ãƒšãƒ¼ã‚¸ç¯„å›²æŒ‡å®š
     If InStr(i, "-") = 0 Then
-        MsgBox "ƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚·B"
+        MsgBox "ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã™ã€‚"
         End
     End If
 
 With .DataSource
-     .FirstRecord = Left(i, InStr(i, "-") - 1)         'ˆóüŠJnƒy[ƒW”Ô†
-     .LastRecord = Right(i, (Len(i) - InStr(i, "-")))  'ˆóüI—¹ƒy[ƒW”Ô†
+     .FirstRecord = Left(i, InStr(i, "-") - 1)         'å°åˆ·é–‹å§‹ãƒšãƒ¼ã‚¸ç•ªå·
+     .LastRecord = Right(i, (Len(i) - InStr(i, "-")))  'å°åˆ·çµ‚äº†ãƒšãƒ¼ã‚¸ç•ªå·
 
 End With
 
-.Execute Pause:=False 'DBÚ‘±æŠm”F”»’èƒR[ƒh
+.Execute Pause:=False 'DBæ¥ç¶šå…ˆç¢ºèªåˆ¤å®šã‚³ãƒ¼ãƒ‰
 
 
 End With
 End With
 
-'ƒƒ‚ƒŠŠJ•úƒR[ƒh
+'ãƒ¡ãƒ¢ãƒªé–‹æ”¾ã‚³ãƒ¼ãƒ‰
 myWrd.Close
 Set myTMP = Nothing
 Set myWrd = Nothing
