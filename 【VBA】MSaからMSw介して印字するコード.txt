@@ -1,0 +1,64 @@
+'管理者：石巻市用地管理課（コードはフリーです。コピペOKです）
+Option Compare Database
+
+
+'ID振り直しコード（テーブル）
+Private Sub Form_BeforeUpdate(Cancel As Integer)
+
+If DCount("ID", "データ保存管理シート") = 0 Then
+Me![ID] = "1"
+Else
+Me![ID] = Format(DMax("ID", "データ保存管理シート") + 1)
+End If
+
+End Sub
+
+'差込印刷コード(フォーム上のボタンへ埋め込み）
+Private Sub insert_at_word_Click()
+Dim myWrd As Object      'ワードオブジェクト格納
+Dim myTMP As Object      'クラス格納
+Dim i As Variant         'ページ範囲格納設定
+
+
+'差込印刷フォーマット（その時の格納場所先を指定すること）
+Const myFileP As String = "Y:\復興事業部\用地管理課\15_設定登記関係" _
+& "\05_登録免許税算出\差込Wordデータ\【差込】登録免許税の算定【アクセス専用】.docx"
+
+
+'ワードオブジェクト起動（マニフェスト）
+Set myWrd = GetObject(myFileP)
+Set myTMP = GetObject(Class:="Word.Application")
+
+With myWrd 'クエリデータ→Wordに差込（動作不安定時、Word側差し込みデータ内容確認）
+With .MailMerge
+     .Destination = 0
+     .SuppressBlankLines = True
+
+
+'ページ数指定画面表示
+i = InputBox("印刷するページ範囲をA-B形式で入力して下さい。")
+
+'ページ範囲指定
+    If InStr(i, "-") = 0 Then
+        MsgBox "キャンセルします。"
+        End
+    End If
+
+With .DataSource
+     .FirstRecord = Left(i, InStr(i, "-") - 1)         '印刷開始ページ番号
+     .LastRecord = Right(i, (Len(i) - InStr(i, "-")))  '印刷終了ページ番号
+
+End With
+
+.Execute Pause:=False 'DB接続先確認判定コード
+
+
+End With
+End With
+
+'メモリ開放コード
+myWrd.Close
+Set myTMP = Nothing
+Set myWrd = Nothing
+
+End Sub
