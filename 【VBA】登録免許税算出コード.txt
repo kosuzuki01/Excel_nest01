@@ -1,0 +1,27 @@
+'登録免許税算出コード（コードはオープンソースです。煮るなり焼くなり自由に使ってください。）
+
+'構文：
+
+Sub データ登録()
+  Dim Sh1 As Worksheet
+  Dim Sh2 As Worksheet
+  Dim myRow As Long
+     Set Sh1 = Worksheets("計算入力シート")
+     Set Sh2 = Worksheets("データ保存管理シート")
+            With Sh2 '
+                 myRow = .Range("A" & Rows.Count).End(xlUp).Row + 1                      '最下段目の文字列（セル）を空白か確認
+                .Range("A" & myRow & ":E" & myRow).Value = Sh1.Range("B5:F5").Value      '１段目のデータコピー
+                .Range("F" & myRow & ":H" & myRow).Value = Sh1.Range("B7:D7").Value      '２段目のデータコピー
+                .Range("I" & myRow & ":K" & myRow).Value = Sh1.Range("B9:D9").Value      '３段目のデータコピー
+                .Range("L" & myRow).Value = Sh1.Range("F7").Value                        '払下げ金額（合計値）コピー
+                .Range("M" & myRow & ":Q" & myRow).Value = Sh1.Range("B11:F11").Value    '４段目のデータコピー
+                
+              '以下、"評価通知書情報"読取実施コード
+                .Range("R" & myRow & ":V" & myRow).Value = Sh1.Range("B15:F15").Value    '１段目のデータ情報コピー
+                .Range("W" & myRow & ":X" & myRow).Value = Sh1.Range("B17:C17").Value    '２段目のデータ情報コピー
+                .Range("Y" & myRow & ":AA" & myRow).Value = Sh1.Range("B19:D19").Value   '３段目のデータ情報コピー
+                .Range("AB" & myRow).Value = Sh1.Range("B21").Value                      '課税評価額のみコピー
+                .Range("AF" & myRow).Value = Sh1.Range("D21").Value                      '合計値（課税評価額）のみコピー
+                .Range("AG" & myRow).Value = Sh1.Range("F21").Value                      '登録免許税額のみコピー
+            End With
+End Sub
