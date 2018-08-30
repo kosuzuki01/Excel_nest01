@@ -4,10 +4,10 @@ Option Compare Database
 'ID振り直しコード（テーブル）
 Private Sub Form_BeforeUpdate(Cancel As Integer)
 
-If DCount("ID", "データ保存管理シート") = 0 Then
+If DCount("ID", "＜シート名＞") = 0 Then
 Me![ID] = "1"
 Else
-Me![ID] = Format(DMax("ID", "データ保存管理シート") + 1)
+Me![ID] = Format(DMax("ID", "＜シート名＞") + 1)
 End If
 
 End Sub
@@ -20,8 +20,7 @@ Dim i As Variant         'ページ範囲格納設定
 
 
 '差込印刷フォーマット（その時の格納場所先を指定すること）
-Const myFileP As String = "Y:\復興事業部\用地管理課\15_設定登記関係" _
-& "\05_登録免許税算出\差込Wordデータ\【差込】登録免許税の算定【アクセス専用】.docx"
+Const myFileP As String = <Word差し込み先パス名を入力する>
 
 
 'ワードオブジェクト起動（マニフェスト）
